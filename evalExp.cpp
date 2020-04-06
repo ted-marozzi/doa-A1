@@ -311,7 +311,7 @@ string infixToPrefix(string infix)
 // Driver code 
 int main() 
 { 
-    string s = "(8+(2*3)/2)";
+    string s = "(8+2)";
     string prefix = infixToPrefix(s);
 
     cout << "Prefix: " << prefix << endl;
