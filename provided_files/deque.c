@@ -115,6 +115,8 @@ Data deque_pop(Deque *deque) {
   return data;
 }
 
+
+
 // Remove and return the bottom element from a Deque
 Data deque_remove(Deque *deque) {
   if (deque->size == 0) {
@@ -170,13 +172,27 @@ void print_deque(Deque *deque) {
 // Reverse the Deque using an iterative approach
 void iterative_reverse(Deque *deque) {
   // You should remove this line and replace it with your own code:
-  exit_with_error("iterative_reverse not implemented");
+  //exit_with_error("iterative_reverse not implemented");
+  
+  Deque *tmp_deque = new_deque();
+
+  while(deque->size > 0)
+  {
+    deque_push(tmp_deque, deque_pop(deque));
+  }
+
+  while(tmp_deque->size > 0)
+  {
+    deque_insert(deque, deque_pop(tmp_deque));
+  }
 }
 
 // Reverse the Deque using a recursive approach
 void recursive_reverse(Deque *deque) {
   // You should remove this line and replace it with your own code:
-  exit_with_error("recursive_reverse not implemented");
+  Deque *tmp_deque = new_deque();
+  recursive_push(deque, tmp_deque);
+
 }
 
 // Split the Deque given a critical value k, such that the Deque contains
@@ -189,7 +205,64 @@ void recursive_reverse(Deque *deque) {
 // This function must run in linear time.
 void split_deque(Deque *deque, int k) {
   // You should remove this line and replace it with your own code:
-  exit_with_error("split_deque not implemented");
+  Deque *greater = new_deque(), *less = new_deque();
+  int i, len_deq =  deque->size;
+
+  for(i=0; i < len_deq; i++)
+  {
+    if(deque_top(deque) >= k)
+    {
+      deque_insert(greater, deque_pop(deque));
+    }
+    else if( deque_top(deque) < k)
+    {
+      deque_insert(less, deque_pop(deque));
+    } 
+  }
+  
+  while(less->size > 0)
+  {
+    deque_insert(greater, deque_pop(less));
+  }
+
+  while(greater->size > 0)
+  {
+    deque_insert(deque, deque_pop(greater));
+  }
+
 }
 
 // TODO: Add any other functions you might need for your Deque module
+void recursive_insert(Deque *deque, Deque *tmp_deque)
+{
+  if(tmp_deque->size == 0)
+  {
+    return;
+  }
+
+  deque_insert(deque, deque_pop(tmp_deque));
+  recursive_insert(deque, tmp_deque);
+
+}
+
+void recursive_push(Deque *deque, Deque *tmp_deque)
+{
+  if(deque->size == 0)
+  {
+    recursive_insert(deque, tmp_deque);
+    return;
+  }
+
+  deque_push(tmp_deque, deque_pop(deque));
+  recursive_push(deque, tmp_deque);
+
+}
+
+Data deque_top(Deque *deque) {
+  if (deque->size == 0) {
+    exit_with_error("can't peek top from empty Deque");
+  }
+  Data data = deque->top->data;
+
+  return data;
+}

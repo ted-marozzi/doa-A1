@@ -89,4 +89,8 @@ void split_deque(Deque *deque, int k);
 
 // TODO: Add any other functions you might need for your Deque module
 
+void recursive_insert(Deque *deque, Deque *tmp_deque);
+void recursive_push(Deque *deque, Deque *tmp_deque);
+Data deque_top(Deque *deque);
+
 #endif
