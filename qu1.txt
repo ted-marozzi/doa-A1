@@ -1,6 +1,12 @@
-   
-// Useful set up functions
+// Subject Code: COMP20007
+// Assignment 1
+// Name: Edward Marozzi
+// Student ID: 910193
 
+
+// Problem 1) String calculator in pseudocode
+
+// Useful set up functions
 function isOperator(c) 
 
     if c is '*' or c is '/' or c is '+' or c is '-' do
