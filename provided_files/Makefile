@@ -5,12 +5,12 @@
 # changes by <Insert Name Here>
 
 # The compiler flags used when compiling
-CFLAGS=-Wall -Wno-comment
+CFLAGS=-Wall -Wno-comment -g -lm
 
 a1: main.o deque.o parkranger.o util.o
 	gcc $(CFLAGS) -o a1 main.o deque.o parkranger.o util.o
 
-main.o: main.c deque.h util.h
+main.o: main.c deque.h util.h parkranger.h
 	gcc $(CFLAGS) -c main.c
 
 deque.o: deque.c deque.h util.h

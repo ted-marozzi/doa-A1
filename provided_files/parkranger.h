@@ -56,4 +56,62 @@ bool is_single_run_possible();
 
 // TODO: Add any additional functions or types required to solve this problem.
 
+
+typedef struct graph_node Graph_node;
+typedef struct graph Graph;
+
+
+// TODO check syntax
+struct graph_node {
+  Graph_node *next;
+  int vertex;
+};
+
+struct graph
+{
+  int num_verticies;
+  int* visited;
+  int* trees_below;
+  Graph_node** adj_lists;
+};
+
+/****************************************************/
+
+// A structure to represent a stack 
+struct StackNode { 
+    int data; 
+    struct StackNode* next; 
+}; 
+  
+
+
+
+
+
+
+/****************************************************/
+
+Graph_node* create_node(int v);
+Graph* create_graph(int vertices);
+void add_edge(Graph* graph, int src, int dest);
+void print_graph(Graph* graph);
+void DFS(Graph* graph, int vertex);
+struct StackNode* newNode(int data);
+
+
+
+int isEmpty(struct StackNode* root);
+void push(struct StackNode** root, int data);
+int pop(struct StackNode** root);
+int peek(struct StackNode* root);
+
+
+
+
+
+
+
+
+
+
 #endif

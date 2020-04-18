@@ -43,7 +43,7 @@ void free_deque(Deque *deque) {
 }
 
 // Create a new Node with a given piece of data
-Node *new_node(Data data) {
+Node* new_node(Data data) {
   Node *node = malloc(sizeof(*node));
   assert(node);
 
@@ -185,6 +185,7 @@ void iterative_reverse(Deque *deque) {
   {
     deque_insert(deque, deque_pop(tmp_deque));
   }
+  free_deque(tmp_deque);
 }
 
 // Reverse the Deque using a recursive approach
@@ -192,6 +193,7 @@ void recursive_reverse(Deque *deque) {
   // You should remove this line and replace it with your own code:
   Deque *tmp_deque = new_deque();
   recursive_push(deque, tmp_deque);
+  free_deque(tmp_deque);
 
 }
 
@@ -229,7 +231,8 @@ void split_deque(Deque *deque, int k) {
   {
     deque_insert(deque, deque_pop(greater));
   }
-
+  free_deque(greater);
+  free_deque(less);
 }
 
 // TODO: Add any other functions you might need for your Deque module
